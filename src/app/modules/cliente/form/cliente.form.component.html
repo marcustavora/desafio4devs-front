@@ -1,0 +1,60 @@
+<div>
+    <mat-card class="colored-card">
+        <mat-card-header>
+            <mat-card-title>Cliente > {{isEdit ? 'Editar' : 'Novo'}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="formCliente" (ngSubmit)="salvar()">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Nome</mat-label>
+                            <input matInput placeholder="Digite o nome" formControlName="nome" id="nome"
+                                maxlength="256">
+                            <mat-error *ngIf="hasError('nome', 'required')">Campo Obrigatório!</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-6">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Nome Contato</mat-label>
+                            <input matInput placeholder="Digite o nome do contato" formControlName="nomeContato"
+                                id="nomeContato" maxlength="256">
+                            <mat-error *ngIf="hasError('nomeContato', 'required')">Campo Obrigatório!</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>CNPJ</mat-label>
+                            <input matInput placeholder="Digite o CNPJ" formControlName="cnpj" id="cnpj" mask="00.000.000/0000-00">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-6">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Escolha data do Cliente</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dataCliente" id="dataCliente">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-xl-6">
+                        <button mat-raised-button routerLink="/app/cliente">
+                            <mat-icon>backspace</mat-icon>
+                            <span class="ml-05">Voltar</span>
+                        </button>
+                    </div>
+                    <div class="col-6 col-xl-6 text-right">
+                        <button mat-raised-button class="button-green">
+                            <mat-icon>save</mat-icon>
+                            <span class="ml-05">Salvar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

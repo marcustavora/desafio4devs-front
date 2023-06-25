@@ -1,0 +1,7 @@
+<!-- Loading spinner -->
+<div *ngIf="loadingService.loading$ | async" class="loading-container flex-content-center">
+    <mat-progress-spinner mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+
+<router-outlet></router-outlet>

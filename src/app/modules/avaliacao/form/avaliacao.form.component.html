@@ -1,0 +1,126 @@
+<div>
+    <mat-card class="colored-card">
+        <mat-card-header>
+            <mat-card-title>Avaliação > {{isDetail ? 'Detalhe' : 'Novo'}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="formAvaliacao" (ngSubmit)="salvar()">
+                <div class="row">
+                    <div class="col-xl-3">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Mês/Ano Referência</mat-label>
+                            <input matInput placeholder="Pesquise pelo Mês Ano referência"
+                                formControlName="mesAnoReferencia" id="mesAnoReferencia" mask="00/0000">
+                            <mat-error *ngIf="hasError('mesAnoReferencia', 'required')">Campo Obrigatório!</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-3" *ngIf="isDetail">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Data Avaliação</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dataAvaliacao" id="dataAvaliacao">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-3" *ngIf="isDetail">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Meta</mat-label>
+                            <input matInput [value]="resultado" [disabled]="true">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lx-12">
+                        <div class="header-cliente">
+                            <div class="title">
+                                <span>Clientes</span><span> - Selecionados:
+                                </span><span>{{percentualClienteSelecionado}}%</span>
+                            </div>
+                            <div>
+                                <button type='button' mat-button class="button-green" (click)="adicionarCliente()"
+                                    *ngIf="!isDetail">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="pergunta">
+                            <h2>Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a
+                                um amigo/conhecido?</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="clientes">
+                    <ng-container formArrayName="clienteAvaliacao"
+                        *ngFor="let cliAva of formGroupClienteAvaliacao['controls']; let i = index;">
+                        <div [formGroupName]="i" class="row">
+                            <div class="col-xl-3">
+                                <mat-form-field appearance="outline" class="field-full">
+                                    <mat-label>Cliente</mat-label>
+                                    <mat-select placeholder="Selecione o cliente" formControlName="clienteId"
+                                        id="clienteId" (selectionChange)="clienteSelecionado($event.value, i)"
+                                        [panelClass]="'hidden'">
+                                        <mat-option *ngFor="let cliente of clientes"
+                                            [value]="cliente.id"><b>{{cliente.nome}}</b> - Última avaliação:
+                                            {{cliente.dataUltimaAvaliacao == null ? 'Não avaliado' :
+                                            cliente.dataUltimaAvaliacao | date: 'dd/MM/yyyy'}}</mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="hasErrorCliente('clienteId', i, 'required')">Campo
+                                        Obrigatório!</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="notas">
+                                    <div *ngFor="let n of notas"
+                                        [ngClass]="{'card-nota': true, 'card-nota-selecionado': formGroupClienteAvaliacao.value[i].nota != null && n.valor == formGroupClienteAvaliacao.value[i].nota}"
+                                        [ngStyle]="{'background-color': n.cor}"
+                                        (click)="!isDetail ? selecionarNota(i, n.valor) : ''">
+                                        {{n.valor}}
+                                        <mat-icon class="badge-selecionado"
+                                            *ngIf="formGroupClienteAvaliacao.value[i].nota != null && n.valor == formGroupClienteAvaliacao.value[i].nota">check</mat-icon>
+                                    </div>
+                                </div>
+                                <mat-error class="err-notas"
+                                    *ngIf="hasErrorCliente('nota', i, 'required') && submit">Campo
+                                    Obrigatório!</mat-error>
+                            </div>
+                            <div class="col-xl-4">
+                                <mat-form-field appearance="outline" class="field-full">
+                                    <mat-label>Motivo Nota</mat-label>
+                                    <input matInput placeholder="Digite o motivo da nota informada"
+                                        formControlName="motivoNota" id="motivoNota" maxlength="512">
+                                    <mat-error *ngIf="hasErrorCliente('motivoNota', i, 'required')">Campo
+                                        Obrigatório!</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-xl-1 acao-cliente-avaliacao">
+                                <button type="button" mat-icon-button class="table-icon-warn" matTooltip="Excluir"
+                                    (click)="excluirClienteAvaliacao(i)" *ngIf="i > 0 && !isDetail">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-xl-6">
+                        <button mat-raised-button routerLink="/app/avaliacao">
+                            <mat-icon>backspace</mat-icon>
+                            <span class="ml-05">Voltar</span>
+                        </button>
+                    </div>
+                    <div class="col-6 col-xl-6 text-right">
+                        <button mat-raised-button class="button-green" *ngIf="!isDetail">
+                            <mat-icon>save</mat-icon>
+                            <span class="ml-05">Salvar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,32 @@
+<div class="col-md-12">
+    <div class="card-login card-container">
+        <div class="logo">
+            <div class="card-logo vermelho">
+            </div>
+            <div class="card-logo amarelo">
+            </div>
+            <div class="card-logo verde">
+            </div>
+        </div>
+        <h1 class="logo-text text-center">Avaliação</h1>
+        <form [formGroup]="formLogin" (ngSubmit)="login()">
+            <div class="mt-2">
+                <mat-form-field appearance="outline" class="field-full">
+                    <mat-label>Usuário</mat-label>
+                    <input matInput placeholder="Digite seu usuário" formControlName="username" id="username">
+                    <mat-error *ngIf="hasError('username', 'required')">Campo Obrigatório!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="mt-2">
+                <mat-form-field appearance="outline" class="field-full">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput placeholder="Digite sua senha" formControlName="senha" id="senha">
+                    <mat-error *ngIf="hasError('senha', 'required')">Campo Obrigatório!</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="mt-4">
+                <button mat-raised-button class="w-100 button-green">Login</button>
+            </div>
+        </form>
+    </div>
+</div>

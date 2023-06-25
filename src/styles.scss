@@ -1,0 +1,148 @@
+html,
+body {
+    height: 95%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.error {
+    color: rgb(235, 15, 15);
+}
+
+.mt-2 {
+    margin-top: 2em;
+}
+
+.mt-4 {
+    margin-top: 4em;
+}
+
+.mr-2 {
+    margin-right: 2em !important;
+}
+
+.ml-05 {
+    margin-left: 0.5em;
+}
+
+.ml-1 {
+    margin-left: 1em;
+}
+
+.ml-2 {
+    margin-left: 2em;
+}
+
+.ml-3 {
+    margin-left: 3em;
+}
+
+.w-5 {
+    width: 5%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.field-full {
+    width: 100%;
+}
+
+.button-green {
+    color: white;
+    background-color: #00b300;
+}
+
+.div-button {
+    margin-top: 10px
+}
+
+.mat-card.result {
+    margin-top: 10px !important;
+}
+
+.mat-card>.mat-card-actions.button-new {
+    margin-top: -49px !important;
+    float: right !important;
+}
+
+mat-card.colored-card,
+.mat-card.colored-card {
+    padding: 16px;
+
+    mat-card-header {
+        background-color: #4b4b4b;
+        color: white;
+        margin-left: -16px;
+        margin-right: -16px;
+        margin-top: -16px;
+        border-radius: 3px 3px 0 0;
+        padding: .75rem 1.25rem;
+        border-bottom: 1px solid transparent;
+        font-weight: 500;
+
+        .mat-card-header-text {
+            margin: 0;
+
+            mat-card-title {
+                font-size: 20px;
+                margin: 0;
+            }
+        }
+
+        &~mat-card-content {
+            margin: 16px 0;
+        }
+    }
+}
+
+table {
+    width: 100%;
+}
+
+.table-icon-warn {
+    color: #bf0419;
+}
+
+.table-icon-primary {
+    color:#004a9f
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-center .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+}
+
+.text-right .mat-sort-header-container {
+    display: flex;
+    justify-content: right;
+}

@@ -1,0 +1,72 @@
+.header-cliente {
+    display: inline-flex;
+    width: 100%;
+    margin-left: 5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0, 0, 0, .6);
+    font-size: 20px;
+    color: rgba(0, 0, 0, .6);
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    letter-spacing: normal;
+
+    .title {
+        width: 96%;
+        margin-top: 15px;
+    }
+}
+
+.clientes {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.acao-cliente-avaliacao {
+    margin-top: 10px;
+}
+
+.notas {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+.err-notas {
+    font-size: 75% !important;
+}
+
+.card-nota {
+    width: 35px;
+    height: 40px;
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    margin: auto;
+    margin-top: 9px;
+    font-size: 16px;
+    padding-top: 11px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.card-nota-selecionado {
+    opacity: 1;
+    width: 45px;
+    height: 50px;
+    margin-top: 4px;
+    padding-top: 14px;
+}
+
+
+.badge-selecionado {
+    color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    margin-top: -20px;
+    margin-left: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.pergunta {
+    margin-left: 3px;
+    color: rgba(0, 0, 0, .6);
+}

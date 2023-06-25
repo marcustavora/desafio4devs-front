@@ -1,0 +1,12 @@
+<div>
+    <mat-card class="colored-card">
+        <mat-card-header>
+            <mat-card-title>Home
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <h2>Resultado Avaliação</h2>
+            <div echarts [options]="dadosResultado" class="chart-resultado" (chartClick)="onChartClick($event)"></div>
+        </mat-card-content>
+    </mat-card>
+</div>

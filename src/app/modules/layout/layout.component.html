@@ -1,0 +1,52 @@
+<mat-toolbar class="mat-elevation-z8">
+    <div class="w-100 toolbar">
+        <div class="float-left">
+            <button class="mr-2" mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+                <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+            </button>
+            <span [ngClass]="{'mt-1': true, 'cursor-pointer': true, 'ml-3': sidenav.opened}"
+                routerLink="/app/home">Avaliação</span>
+        </div>
+        <div class="float-right">
+            <button mat-button class="menu-button" (click)="logout()"
+                matTooltip="Sair"><mat-icon>logout</mat-icon></button>
+        </div>
+        <div class="float-right mt-1">{{nomeUsuario}}</div>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+        <div>
+            <div class="card-logo vermelho">
+            </div>
+            <div class="card-logo amarelo">
+            </div>
+            <div class="card-logo verde">
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button" routerLink="/app/home">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/app/cliente">
+            <mat-icon>business</mat-icon>
+            <span>Cliente</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/app/avaliacao">
+            <mat-icon>assignment</mat-icon>
+            <span>Avaliação</span>
+        </button>
+
+        <mat-divider></mat-divider>
+        Desafio 4Devs - 2023
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,72 @@
+<div>
+    <mat-card class="colored-card">
+        <mat-card-header>
+            <mat-card-title>Avaliação > Lista
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-actions class="button-new">
+            <div>
+                <button mat-raised-button class="button-green" routerLink="/app/avaliacao/novo">
+                    <mat-icon>add</mat-icon>
+                    <span class="ml-05">Adicionar Avaliação</span>
+                </button>
+            </div>
+        </mat-card-actions>
+        <mat-card-content>
+            <form [formGroup]="formSearch" (ngSubmit)="pesquisar()">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <mat-form-field appearance="outline" class="field-full">
+                            <mat-label>Mês/Ano Referência</mat-label>
+                            <input matInput placeholder="Pesquise pelo Mês Ano referência"
+                                formControlName="mesAnoReferencia" id="mesAnoReferencia" mask="00/0000">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xl-2 div-button">
+                        <button mat-raised-button class="button-green">
+                            <mat-icon>search</mat-icon>
+                            <span class="ml-05">Pesquisar</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="result" [hidden]="!showResult">
+        <mat-card-content>
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="mesAnoReferencia">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Mês/Ano Referência </th>
+                    <td mat-cell *matCellDef="let element"> {{element.mesAnoReferencia | mesAno}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dataAvaliacao">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-center"> Data Avaliação </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dataAvaliacao | date:
+                        'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="qtdClientesAvaliados">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-right"> Quantidade Clientes </th>
+                    <td mat-cell *matCellDef="let element" class="text-right"> {{element.qtdClientesAvaliados}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="text-center"> Ações </th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <button mat-icon-button class="table-icon-primary" matTooltip="Detalhe Avaliação"
+                            (click)="detalhar(element.id)">
+                            <mat-icon>zoom_in</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [length]="totalRecords" hidePageSize pageSize="20" showFirstLastButtons>
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>
